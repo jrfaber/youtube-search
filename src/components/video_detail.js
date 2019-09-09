@@ -10,17 +10,17 @@ const VideoDetail = ({ video }) => {
     const url = `https://www.youtube.com/embed/${videoId}`;
 
     return (
-        <div>
+        <div className="video-detail col-md-8">
+        <div className="embed-responsive embed-responsive-16by9">
             <div>
-                <div>
-                    <iframe src={url} title={video.snippet.title}/>
-                </div>
-            </div>
-            <div>
-                <div>{video.snippet.title}</div>
-                <div>{video.snippet.description}</div>
+                <iframe className="embed-responsive-item" src={url} title={video.snippet.title}/>
             </div>
         </div>
+        <div className="details">
+            <div>{video.snippet.title}</div>
+            <div>{video.snippet.description}</div>
+        </div>
+    </div>
     );
 };
 
