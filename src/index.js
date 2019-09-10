@@ -6,6 +6,7 @@ import VideoList from "./components/video_list";
 import VideoDetail from "./components/video_detail";
 import 'bootstrap/dist/css/bootstrap.min.css'; // import Bootstrap CSS library
 import "./index.css"; // in addition, import our own CSS specs
+import _ from 'lodash';
 
 const API_KEY = 'AIzaSyCLbKOa_gXSZ7t15gLv4j56XzxiUSpompI';
 
@@ -31,9 +32,10 @@ class App extends Component {
         }
 
     render() {
+        const videoSearch = _.debounce((term) => { this.videoSearch(term) }, 500);
         return (
             <div>
-                <SearchBar onSearchTermSearch={term => this.videoSearch(term)}/>
+                <SearchBar onSearchTermSearch={videoSearch}/>
                 <div className="row">
                     <VideoDetail video={this.state.videos[0]} />
                     <VideoDetail video={this.state.selectedVideo} />
